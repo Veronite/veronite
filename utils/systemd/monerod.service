@@ -1,0 +1,21 @@
+[Unit]
+Description=Veronite Full Node
+After=network.target
+
+[Service]
+User=veronite
+Group=veronite
+WorkingDirectory=~
+RuntimeDirectory=veronite
+
+Type=forking
+PIDFile=/run/veronite/veronited.pid
+
+ExecStart=/usr/bin/veronited --config-file /etc/veronited.conf \
+    --detach --pidfile /run/veronite/veronited.pid
+
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
